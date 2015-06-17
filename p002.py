@@ -1,3 +1,5 @@
+from __future__ import division
+
 users = [
 	{ 'id': 0, 'name': 'Hero' },
 	{ 'id': 1, 'name': 'Dunn' },
@@ -43,20 +45,16 @@ def number_of_friends(user):
 # find the total number of connections in our network
 total_connections = sum(number_of_friends(user) for user in users)
 
+# find the total number of users in our network
+num_users = len(users)
 
-####################################################################
-# NOTES ############################################################
-####################################################################
+# find the average number of connections in our network
+avg_connections = total_connections / num_users
 
-# # return len(user(['friends'])) 	# length of friend_ids list
-# 	# return len(users[0]['friends']) # length of friends list for users[0]
-# 	return len(users[user_id]['friends']) # length of friends list
-# 	print len(users[i]['friends'])
-# 	return len(user(['friends'])) 	# length of friend_ids list
+# create a list of tuples (user_id, number_of_friends)
+num_friends_by_id = [(user['id'], number_of_friends(user)) for user in users]
 
-# for user in users:
-# 	user_id = users['id']
-# 	print number_of_friends(user_ie)
+# sort num_friends_by_id by number of friends largest to smallest
+sorted_number_of_friends = sorted(num_friends_by_id, key = lambda (user_id, number_of_friends): number_of_friends, reverse = True)
 
-# total_connections = sum(number_of_friends(user) for user in users) #24
-# print total_connections
+print sorted_number_of_friends
